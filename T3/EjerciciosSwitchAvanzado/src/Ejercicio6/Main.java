@@ -7,7 +7,7 @@ public class Main {
 
         int hora = metodos.obtenerHoraActual();
 
-        switch (true) {  // Paso 3
+        switch (true){
             case (hora >= 0 && hora <= 5):
                 System.out.println("Buenas madrugadas");
                 break;
