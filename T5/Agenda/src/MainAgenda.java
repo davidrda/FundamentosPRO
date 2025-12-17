@@ -1,5 +1,7 @@
 import controller.Agenda;
+import model.Contacto;
 
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class MainAgenda {
@@ -31,7 +33,12 @@ public class MainAgenda {
                     String dni = scanner.next();
                     System.out.println("Introduce el telefono");
                     int telefono = scanner.nextInt();
-                    agenda.agregarContacto(new Object[]{nombre,apellido,correo,telefono,dni});
+
+                    // Se crea nuevo contacto con los datos ingresados
+                    Contacto contacto = new Contacto(nombre,apellido,correo,dni,telefono);
+
+                    // Se envia a la agenda
+                    agenda.agregarContacto(contacto);
                 }
                 case 2->{
                     System.out.println("Dime el dni de la persona a borrar");

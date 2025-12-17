@@ -1,13 +1,14 @@
 package controller;
 
+import model.Contacto;
+
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class Agenda {
 
     // [nombre, apellido, telefono, correo, dni]
     // Nunca se inicializa aquí
-    private ArrayList<Object[]> listaContactos;
+    private ArrayList<Contacto> listaContactos;
 
     // Se inicializa en el constructor o en el metod que se vaya a utilizar
     public Agenda(){
@@ -15,63 +16,61 @@ public class Agenda {
     }
 
     // agregarContacto
-    public void agregarContacto(Object[] contacto){ // creamos nosotros un Objecto de tipo contacto
-        listaContactos.add(contacto);
-        System.out.println("Agregado correctamente");
-        // no puede haber dnis duplicados
+    public void agregarContacto(Contacto contacto) { // creamos nosotros un Objecto de tipo contacto
+        if (existeEmail(contacto.getEmail())){
+            System.out.println("Ya existe un contacto con ese email");
+        } else {
+            listaContactos.add(contacto);
+            System.out.println("Contacto agregado correctamente");
+        }
+
+    }
+    public boolean existeEmail(String email){
+        // Recorres la lista de contactos, asignando el nombre contacto a cada contacto
+        for (Contacto contacto : listaContactos){
+            if (contacto != null && contacto.getEmail().equals(email)){
+                return true; // Devuelve true si ya hay un contacto con ese email
+            }
+
+        }
+        return false;
     }
 
     // buscarContacto
     public void buscarContacto(String dni){
-        if (listaContactos.isEmpty()){
-            System.out.println("No hay nada que buscar");
-        } else {
-            for (Object[] contacto: listaContactos){
-                if (contacto[4].equals(dni)){
-                    System.out.println("Contacto encontrado");
-                    System.out.println("Nombre: "+contacto[0]);
-                    System.out.println("Telefono: "+contacto[3]);
-                    System.out.println("Correo: "+contacto[2]);
-                    break;
-                }
-            }
-            System.out.println("Usuario no encontrado");
-        }
-    }
-    // borrarContacto
-    public void borrarContacto(String dni){
-        if (listaContactos.isEmpty()){
-            System.out.println("No hay nada que borrar");
-        } else {
-            /*listaContactos.removeIf(new Predicate<Object[]>() {
-                @Override
-                public boolean test(Object[] objects) {
-                    return objects[4].equals(dni);
-                }
-            }){
 
+        for (Contacto contacto: listaContactos){
+            if (contacto.getDni().equals(dni)){
+                System.out.println("Contacto encontrado");
+                System.out.println(contacto);
+                return;
             }
-             */
-            for (Object[] contacto: listaContactos){
-                if (contacto[4].equals(dni)){
-                    listaContactos.remove(contacto);
-                }
-            }
-            System.out.println("Usuario no encontrado");
         }
+        System.out.println("Contacto no encontrado");
     }
+
+    // borrarContacto
+    public void borrarContacto(String dni) {
+        for (int i = 0; i < listaContactos.size(); i++) {
+            Contacto contacto = listaContactos.get(i); // obtenemos el contacto en esa posición
+            if (contacto.getDni().equals(dni)) {
+                listaContactos.remove(i); // eliminamos el contacto por su posición
+                System.out.println("Contacto eliminado.");
+                return; // salimos del método
+            }
+        }
+        System.out.println("Contacto no encontrado.");
+    }
+
     // listarContactos
     public void listarContactos(){
-        for (Object[] contacto: listaContactos){
+        for (Contacto contacto : listaContactos){
                 System.out.println("Imprimiendo contacto");
-                System.out.println("\tNombre: "+contacto[0]);
-                System.out.println("\tTelefono: "+contacto[3]);
-                System.out.println("\tCorreo: "+contacto[2]);
+                System.out.println("\tNombre: "+contacto.getNombre());
+                System.out.println("\tTelefono: "+contacto.getTelefono());
+                System.out.println("\tCorreo: "+contacto.getEmail());
+                System.out.println("\tDNI: "+contacto.getDni());
                 break;
         }
-    }
-
-    public ArrayList<Object[]> getListaContactos() {
-        return listaContactos;
     }
 }
