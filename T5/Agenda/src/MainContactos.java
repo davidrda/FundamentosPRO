@@ -1,14 +1,17 @@
 import controller.Agenda;
+import controller.AgendaContactos;
+import model.Contacto;
 
 import java.util.Scanner;
 
-public class MainAgenda {
+public class MainContactos {
 
     public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
         int opcion = 0;
-        Agenda agenda = new Agenda();
+        Scanner scanner = new Scanner(System.in);
+        AgendaContactos agendaContactos = new AgendaContactos();
+        // listaContactos = [] contador=1
+
         // listaContactos = [[b,m,b@gmail,1234],[m,l,m@gmail,2345]]
 
         do {
@@ -31,26 +34,25 @@ public class MainAgenda {
                     String dni = scanner.next();
                     System.out.println("Introduce el telefono");
                     int telefono = scanner.nextInt();
-                    agenda.agregarContacto(new Object[]{nombre,apellido,correo,telefono,dni});
+                    agendaContactos.agregarContacto(new Contacto(nombre,apellido,dni,correo,telefono));
                 }
                 case 2->{
-                    System.out.println("Dime el dni de la persona a buscar");
+                    System.out.println("Introduce el dni a borrar");
                     String dni = scanner.next();
-                    agenda.borrarContacto(dni);
+                    agendaContactos.borrarContacto(dni);
                 }
                 case 3->{
-                    System.out.println("Dime el dni de la persona a buscar");
+                    System.out.println("Introduce el dni a buscar");
                     String dni = scanner.next();
-                    agenda.buscarPersona(dni);
+                    agendaContactos.buscarContacto(dni);
                 }
                 case 4->{
-                    agenda.listarContactos();
+                    agendaContactos.listarContactos();
                 }
                 case 5->{
                     System.out.println("Salir");
                 }
             }
         }while (opcion!=5);
-
     }
 }
