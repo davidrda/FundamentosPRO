@@ -20,6 +20,15 @@ public class Producto {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "Codigo: " + codigo +
+                ", Nombre: " + nombre +
+                ", Stock: " + stock +
+                ", Precio: " + precio;
+    }
+
+
     public boolean vender(int cantidad) {
         if (stock >= cantidad) {
             stock -= cantidad;

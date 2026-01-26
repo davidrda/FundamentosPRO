@@ -1,16 +1,25 @@
 package ejercicio1;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Libro {
 
-    private String titulo, autor;
+    @Getter
+    @Setter
+
+    private String titulo, autor, isbn;
     private int numPaginas;
     private double precio;
+    private boolean prestado;
 
-    public Libro(String titulo, String autor, int numPaginas, double precio) {
+    public Libro(String titulo, String autor, String isbn, int numPaginas, double precio) {
         this.titulo = titulo;
         this.autor = autor;
+        this.isbn = isbn;
         this.numPaginas = numPaginas;
         this.precio = precio;
+        prestado = false;
     }
 
     public void mostrarInfo(Libro libro) {
@@ -20,8 +29,24 @@ public class Libro {
         System.out.println("Precio: " + precio);
     }
 
+    public boolean prestar(){
+        if (!prestado) {
+            prestado = true;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean devolver() {
+        if (prestado) {
+            prestado = false;
+            return true;
+        }
+        return false;
+    }
+
     public boolean esLibroLargo() {
-        if (getNumPaginas() > 300) {
+        if (numPaginas > 300) {
             return true;
         }
         return false;
@@ -37,35 +62,11 @@ public class Libro {
         System.out.printf("Nuevo precio: %.2f ", (precio - precioDescontado));
     }
 
-    public String getTitulo() {
-        return titulo;
+    public boolean isPrestado() {
+        return prestado;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public int getNumPaginas() {
-        return numPaginas;
-    }
-
-    public void setNumPaginas(int numPaginas) {
-        this.numPaginas = numPaginas;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public String getIsbn() {
+        return isbn;
     }
 }
