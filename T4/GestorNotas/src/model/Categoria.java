@@ -7,16 +7,16 @@ public enum Categoria {
     ROPA(),
     TECNOLOGICO("esta categoria marca productos de ultima generacion");
 
-    private String descipcion;
+    private String descripcion;
 
     Categoria() {
     }
 
-    Categoria(String descipcion) {
-        this.descipcion = descipcion;
+    Categoria(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getDescipcion() {
-        return descipcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 }

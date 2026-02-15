@@ -27,7 +27,7 @@ public class Producto {
         System.out.println("nombre = " + nombre);
         System.out.println("codigo = " + codigo);
         System.out.println("precio = " + precio);
-        System.out.println("categoria = " + categoria.getDescipcion());
+        System.out.println("categoria = " + categoria.getDescripcion());
     }
 
     public String getNombre() {

@@ -21,3 +21,11 @@ public class Main {
 
     }
 }
+
+/*
+En este proyecto, se usa:
+- Programación Orientada a Objetos
+- Funciones Lambda (BiPredicate)
+- .stream y diversos métodos
+
+ */
